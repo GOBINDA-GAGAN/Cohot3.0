@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body {
+        background: linear-gradient(to bottom, rgb(2, 2, 37), rgb(4, 3, 4));
+        min-height: 250dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2%;
+
+
+
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 250px 250px 250px 250px;
+        grid-template-rows: 250px 250px;
+        gap: 5px;
+        grid-template-areas: "box-1 box-1 box-1 box-2" "box-3 box-4 box-5 box-5";
+
+        /* grid-auto-columns: 300px; */
+
+        /* grid-auto-flow: column;
+
+        grid-auto-rows: 300px;
+
+        gap: 1em;
+        justify-content: center;
+        align-content: center;
+        height: 250vh;
+
+
+        justify-items: center;
+        align-items: center; */
+
+
+    }
+
+    .box:nth-child(1) {
+        /* background:radial-gradient(#07C289,#fff); */
+        border-top-left-radius: 2em;
+
+    }
+
+    .box:nth-child(2) {
+        background: radial-gradient(#429BC1, #fff);
+
+        border-top-right-radius: 2em;
+    }
+
+    .box:nth-child(3) {
+        background: radial-gradient(#e616df, #fff);
+        border-bottom-left-radius: 2em;
+
+    }
+
+    .box:nth-child(4) {
+        background: radial-gradient(#e60b0b, #fff);
+
+    }
+
+    .box:nth-child(5) {
+        background: radial-gradient(#0B6EFE, #fff);
+        border-bottom-right-radius: 2rem;
+
+    }
+
+    .box {
+
+        overflow: hidden;
+    }
+
+    .box .img {
+        height: 100%;
+        width: 100%;
+        object-fit:cover;
+        background-position:top;
+
+
+    }
+</style>
+
+<body>
+    <div class="grid-container">
+        <div class="item1 box" style="grid-area:box-1;">
+            <img class="img" src="./1.jpg" alt="" srcset="">
+        </div>
+        <div class="item2 box" style="grid-area:box-2;">
+            <img class="img" src="./2.jpg" alt="" srcset="">
+        </div>
+        <div class="item3 box" style="grid-area:box-3;">
+            <img class="img" src="./4.jpg" alt="" srcset="">
+        </div>
+        <div class="item4 box" style="grid-area:box-4;">
+            <img class="img" src="./3.jpg" alt="" srcset="">
+        </div>
+        <div class="item5 box" style="grid-area:box-5;">
+            <img class="img" src="./5.png" alt="" srcset="">
+        </div>
+
+    </div>
+
+</body>
+
+</html>
