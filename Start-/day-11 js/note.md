@@ -34,25 +34,25 @@ The more you practice on your own, the faster your JavaScript skills will improv
 
 ## Data Types
 
-1. Create variables of type string, number, boolean, null, and undefined.
-2. Check the type of different variables using `typeof`.
-3. Store your mobile number in a variable and check its type.
-4. Create a variable with value `null` and check its type.
-5. Create a bigint number and print it.
+1. Create variables of type string, number, boolean, null, and undefined.✅
+2. Check the type of different variables using `typeof`.✅
+3. Store your mobile number in a variable and check its type.✅
+4. Create a variable with value `null` and check its type.✅
+5. Create a bigint number and print it.✅
 
 ---
 
 ## Type Conversion & Coercion
 
-1. Convert the string `"50"` into a number.
-2. Convert the number `100` into a string.
-3. Convert `"true"` into a boolean.
+1. Convert the string `"50"` into a number.✅
+2. Convert the number `100` into a string.✅
+3. Convert `"true"` into a boolean.✅
 4. Check the output of:
-- `"5" + 2`
-- `"5" - 2`
-- `true + 1`
-1. Create a variable with value `"123abc"` and convert it into a number.
-2. Use `parseInt()` on `"500px"`.
+- `"5" + 2`✅
+- `"5" - 2`✅
+- `true + 1`✅
+1. Create a variable with value `"123abc"` and convert it into a number.✅
+2. Use `parseInt()` on `"500px"`.✅
 
 ---
 

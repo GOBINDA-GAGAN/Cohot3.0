@@ -50,4 +50,24 @@ console.log(typeof time);
 console.log(time);
 
 
+let number_string="50";
+let  number=Number(number_string)
+console.log(typeof number);
 
+let number2=50;
+let  number_string2=String(number2)
+console.log(typeof number2);
+
+console.log(typeof number_string2);
+console.log("5"+2);//52
+console.log("5"-2);//3
+console.log(true+1);
+
+let value="123abc";
+console.log(Number(value)); //NAN
+
+console.log(typeof NaN);
+
+console.log("_______________");
+
+console.log(parseInt("50098"));
