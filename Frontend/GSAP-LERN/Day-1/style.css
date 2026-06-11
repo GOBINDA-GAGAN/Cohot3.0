@@ -3,3 +3,32 @@
     margin: 0;;
     box-sizing: border-box;
 }
+
+body{
+    background: #000;
+    padding: 30px;
+}
+.container{
+
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+}
+#box1{
+    background: red;
+    height: 100px;
+    width: 100px;
+    border-radius: 30px;
+}
+#box2{
+    background: rgb(147, 245, 0);
+    height: 100px;
+    width: 100px;
+    border-radius: 30px;
+}
+#box3{
+    background: rgb(47, 0, 255);
+    height: 100px;
+    width: 100px;
+    border-radius: 30px;
+}
