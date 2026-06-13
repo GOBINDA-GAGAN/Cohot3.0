@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    width: 100%;
+    width: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.main{
+    height: 600px;
+    width: 70%;
+    background: whitesmoke;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+input{
+    padding:10px 15px;
+    width: 300px;
+    outline: none;
+    border:black solid 2px;
+    border-radius:10px ;
+}
+button{
+    padding:10px 15px;
+     color: white;
+     background: green;
+     border-radius:10px ;
+}
+.todo-list{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+ul{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(144, 147, 232);
+    border-radius: 15px;
+}
+ul span{
+
+}
+li{
+    list-style: none;
+}
+.edit{
+ background: yellow;
+ color: #000;
+}
+.delete{
+    background: red;
+}
