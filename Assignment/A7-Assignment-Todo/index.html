@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow SaaS</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="ri-checkbox-circle-fill"></i>
+            <h2>TaskFlow</h2>
+        </div>
+
+        <ul class="menu">
+            <li class="active"><i class="ri-dashboard-line"></i> Dashboard</li>
+            <li><i class="ri-task-line"></i> Tasks</li>
+            <li><i class="ri-bar-chart-line"></i> Analytics</li>
+            <li><i class="ri-calendar-line"></i> Calendar</li>
+            <li><i class="ri-settings-3-line"></i> Settings</li>
+        </ul>
+    </aside>
+
+    <main class="main">
+
+        <header class="header">
+            <div>
+                <h1>Hello Gobinda 👋</h1>
+                <p>Stay focused and finish your goals.</p>
+            </div>
+
+            <div class="profile">
+                <i class="ri-notification-3-line"></i>
+                <img src="https://i.pravatar.cc/100" alt="">
+            </div>
+        </header>
+
+        <section class="stats">
+
+            <div class="card purple">
+                <h2 id="totalTask">0</h2>
+                <p>Total Tasks</p>
+            </div>
+
+            <div class="card green">
+                <h2 id="completedTask">0</h2>
+                <p>Completed</p>
+            </div>
+
+            <div class="card orange">
+                <h2 id="pendingTask">0</h2>
+                <p>Pending</p>
+            </div>
+
+        </section>
+
+        <section class="todo-section">
+
+            <div class="todo-header">
+                <h2>Today's Tasks</h2>
+
+                <div class="input-box">
+                    <input
+                        type="text"
+                        id="taskInput"
+                        placeholder="Enter a new task..."
+                    >
+
+                    <button onclick="addTask()">
+                        Add Task
+                    </button>
+                </div>
+            </div>
+
+            <div id="taskList"></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
