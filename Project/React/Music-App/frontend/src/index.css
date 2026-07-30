@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  /* =========================
+     NEXORA COLOR SYSTEM
+  ========================== */
+
+  /* Brand Green */
+  --color-primary: #22a865;
+  --color-primary-hover: #198a52;
+  --color-primary-light: #dff3e7;
+  --color-primary-soft: #edf8f1;
+
+  /* Background */
+  --color-background: #f3f4f1;
+  --color-surface: #f8f9f6;
+  --color-card: #f6f7f4;
+
+  /* Elevated / Highlight cards */
+  --color-mint: #dceee0;
+  --color-mint-light: #e9f5ec;
+  --color-mint-dark: #bddfc6;
+
+  /* Text */
+  --color-foreground: #121512;
+  --color-heading: #101310;
+  --color-text: #343934;
+  --color-muted: #737a73;
+  --color-subtle: #9ca39c;
+
+  /* Borders */
+  --color-border: #e1e4df;
+  --color-border-soft: #e9ebe7;
+
+  /* Dark UI */
+  --color-dark: #101310;
+  --color-dark-hover: #252925;
+
+  /* Status */
+  --color-success: #22a865;
+  --color-success-soft: #e4f5e9;
+
+  --color-warning: #d9a72e;
+  --color-warning-soft: #faf2da;
+
+  --color-danger: #d95c5c;
+  --color-danger-soft: #f9e6e6;
+
+  /* Charts */
+  --color-chart-primary: #27a968;
+  --color-chart-secondary: #a9b6aa;
+  --color-chart-grid: #e5e8e3;
+}
