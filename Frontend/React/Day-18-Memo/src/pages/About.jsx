@@ -2,6 +2,8 @@ import React from 'react'
 import PageTransition from '../components/PageTransition'
 
 const About = () => {
+  console.log("About rendering............");
+
   return (
     <PageTransition>
 
@@ -12,4 +14,4 @@ const About = () => {
   )
 }
 
-export default About
+export default React.memo(About)

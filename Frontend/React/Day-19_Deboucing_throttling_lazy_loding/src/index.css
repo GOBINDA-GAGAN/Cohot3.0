@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@keyframes spark {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -80%) scale(1.3) rotate(90deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -150%) scale(0.3) rotate(180deg);
+  }
+}
+
+.animate-spark {
+  animation: spark 600ms ease-out forwards;
+}
+
+@keyframes electricFlash {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 220;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+.electric-line {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+
+  animation: electricFlash 400ms ease-out forwards;
+
+  filter:
+    drop-shadow(0 0 2px #fff)
+    drop-shadow(0 0 5px #60a5fa)
+    drop-shadow(0 0 10px #2563eb);
+}
+
+.electric-glow {
+  animation: electricFlash 400ms ease-out forwards;
+
+  filter:
+    blur(5px)
+    drop-shadow(0 0 10px #3b82f6);
+}
