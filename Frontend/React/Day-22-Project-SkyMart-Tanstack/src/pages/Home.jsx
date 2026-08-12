@@ -4,7 +4,7 @@ import PageTransition from "../components/PageTransition";
 const Home = React.memo(() => {
   return (
     <PageTransition>
-      <div>HOME</div>
+      <div className="bg-background">HOME</div>
     </PageTransition>
   );
 });

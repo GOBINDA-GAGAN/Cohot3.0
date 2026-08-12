@@ -1,117 +1,142 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React from "react";
+import { User, Mail, Lock, Eye, UserPlus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 import PageTransition from "../components/PageTransition";
-import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import { Auth } from "../context/AuthContext";
-import toast from "react-hot-toast";
 
 const RegisterPage = () => {
-    const navigate = useNavigate();
+  const { navigate, register, handleSubmit, errors,registerForm } = useAuth();
+  return (
+    <PageTransition>
+   <div className="min-h-screen bg-background flex items-center justify-center px-4">
+  <div className="w-full max-w-4xl bg-white shadow-lg grid grid-cols-2 border border-border">
+    
+    {/* Left Side */}
+    <div className="bg-primary text-white flex flex-col justify-center items-center p-10">
+      <h1 className="text-4xl font-bold mb-4">
+        Create Account
+      </h1>
 
-    const { setRegisterUser, registerUser } = useContext(Auth)
+      <p className="text-center text-primary-light">
+        Join us today and start your journey.
+      </p>
+    </div>
 
-    let { register, handleSubmit, reset, formState: { errors } } = useForm();
+    {/* Right Side */}
+    <div className="p-10 flex flex-col justify-center">
+      <h2 className="text-3xl font-bold text-foreground mb-8">
+        Register
+      </h2>
 
-    const formSubmit = (data) => {
-        const existUser = registerUser.some(
-            (user) => user.email === data.email
-        );
+      <form
+        onSubmit={handleSubmit(registerForm)}
+        className="space-y-5"
+      >
+        {/* Full Name */}
+        <div>
+          <label className="block mb-2 text-sm font-medium text-foreground">
+            Full Name
+          </label>
 
+          <div className="flex items-center border border-border focus-within:border-primary">
+            <User className="w-5 h-5 text-muted ml-3" />
 
-        if (existUser) {
-            toast.error("User already exists");
-            return;
-        }
+            <input
+              {...register("name", {
+                required: "Name is required",
+              })}
+              type="text"
+              placeholder="Enter your full name"
+              className="w-full px-4 py-3 outline-none bg-transparent text-foreground placeholder:text-muted"
+            />
+          </div>
+        </div>
 
-        const updatedUsers = [...registerUser, data];
+        {/* Email */}
+        <div>
+          <label className="block mb-2 text-sm font-medium text-foreground">
+            Email
+          </label>
 
-        setRegisterUser(updatedUsers);
-        localStorage.setItem("registerUser", JSON.stringify(updatedUsers));
-        toast.success("User register successfully");
+          <div className="flex items-center border border-border focus-within:border-primary">
+            <Mail className="w-5 h-5 text-muted ml-3" />
 
-        reset()
+            <input
+              {...register("email", {
+                required: "email is required",
+              })}
+              type="email"
+              placeholder="Enter your email"
+              className="w-full px-4 py-3 outline-none bg-transparent text-foreground placeholder:text-muted"
+            />
+          </div>
+        </div>
 
+        {/* Password */}
+        <div>
+          <label className="block mb-2 text-sm font-medium text-foreground">
+            Password
+          </label>
 
-    }
+          <div className="flex items-center border border-border focus-within:border-primary">
+            <Lock className="w-5 h-5 text-muted ml-3" />
 
-    return (
-        <PageTransition>
-            <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-                <div className="w-full max-w-sm rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-                    <h1 className="text-2xl font-bold text-gray-900">Create Account</h1>
-                    <p className="mt-1 text-sm text-gray-500">
-                        Register to get started
-                    </p>
+            <input
+              {...register("password", {
+                required: "password is required",
+              })}
+              type="password"
+              placeholder="Create a password"
+              className="w-full px-4 py-3 outline-none bg-transparent text-foreground placeholder:text-muted"
+            />
 
-                    <form onSubmit={handleSubmit(formSubmit)}
-                        className="mt-6 space-y-4">
-                        <div>
-                            <label className="mb-2 block text-sm font-medium text-gray-700">
-                                Name
-                            </label>
-                            <input
-                                {...register("name", { required: "Name is required" })}
-                                type="text"
-                                placeholder="Enter your name"
-                                className="w-full rounded-lg border border-gray-300 px-4 py-2.5 outline-none focus:border-black"
-                            />
-                            <p className=" text-sm text-red-500">{errors.name && errors.name.message}</p>
-                        </div>
+            <Eye className="w-5 h-5 text-muted mr-3 cursor-pointer" />
+          </div>
+        </div>
 
-                        <div>
-                            <label className="mb-2 block text-sm font-medium text-gray-700">
-                                Email
-                            </label>
-                            <input
-                                {...register("email", { required: "email is required" })}
-                                type="email"
-                                placeholder="Enter your email"
-                                className="w-full rounded-lg border border-gray-300 px-4 py-2.5 outline-none focus:border-black"
-                            />
-                            <p className=" text-sm text-red-500">{errors.email && errors.email.message}</p>
-                        </div>
+        {/* Confirm Password */}
+        <div>
+          <label className="block mb-2 text-sm font-medium text-foreground">
+            Confirm Password
+          </label>
 
-                        <div>
-                            <label className="mb-2 block text-sm font-medium text-gray-700">
-                                Password
-                            </label>
-                            <input
-                                {...register("password", {
-                                    required: "Password is required",
-                                    minLength: {
-                                        value: 6,
-                                        message: "Password must be at least 6 characters long",
-                                    }
-                                }
-                                )}
-                                type="password"
-                                placeholder="Create a password"
-                                className="w-full rounded-lg border border-gray-300 px-4 py-2.5 outline-none focus:border-black"
-                            />
-                            <p className=" text-sm text-red-500">{errors.password && errors.password.message}</p>
-                        </div>
+          <div className="flex items-center border border-border focus-within:border-primary">
+            <Lock className="w-5 h-5 text-muted ml-3" />
 
-                        <button
-                            type="submit"
-                            className="w-full rounded-lg bg-black py-2.5 text-white transition hover:opacity-90"
-                        >
-                            Create Account
-                        </button>
-                    </form>
+            <input
+              type="password"
+              placeholder="Confirm your password"
+              className="w-full px-4 py-3 outline-none bg-transparent text-foreground placeholder:text-muted"
+            />
 
-                    <p className="mt-6 text-center text-sm text-gray-600">
-                        Already have an account?{" "}
-                        <button
-                            onClick={() => navigate("/auth/login")}
-                            className="font-medium text-black hover:underline"
-                        >
-                            Login
-                        </button>
-                    </p>
-                </div>
-            </div>
-        </PageTransition>
-    );
+            <Eye className="w-5 h-5 text-muted mr-3 cursor-pointer" />
+          </div>
+        </div>
+
+        {/* Button */}
+        <button
+          type="submit"
+          className="w-full bg-primary hover:bg-primary-hover text-white py-3 font-semibold flex items-center justify-center gap-2 transition"
+        >
+          <UserPlus size={20} />
+          Create Account
+        </button>
+
+        <p className="text-center text-muted">
+          Already have an account?{" "}
+          <button
+            onClick={() => navigate("/login")}
+            className="text-primary font-medium cursor-pointer hover:underline"
+          >
+            Login
+          </button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+    </PageTransition>
+  );
 };
 
 export default RegisterPage;

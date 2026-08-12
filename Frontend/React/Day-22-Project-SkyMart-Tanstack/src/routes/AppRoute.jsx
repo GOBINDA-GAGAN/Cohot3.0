@@ -11,10 +11,12 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../features/authSlices";
 import PublicProtectedRoute from "./PublicProtectedRoute";
 import MainProtectedRoute from "./MainProtectedRoute";
+import ShopPage from "../pages/ShopPage";
+import AboutPage from "../pages/AboutPage";
+import ProductDetailsPage from "../pages/ProductDetailsPage";
 
 let router = createBrowserRouter([
   {
-  
     element: <PublicProtectedRoute />,
     children: [
       {
@@ -34,20 +36,30 @@ let router = createBrowserRouter([
   },
   {
     path: "/",
-    element:<MainProtectedRoute/>,
-    children:[
+    element: <MainProtectedRoute />,
+    children: [
       {
         element: <MainLayout />,
         children: [
-        {
-        // path: "",
-        index: true,
-        element: <Home />,
-      },
+          {
+            index: true,
+            element: <Home />,
+          },
+          {
+            path: "shop",
+            element: <ShopPage />,
+          },
+          {
+            path: "product/:id",
+            element: <ProductDetailsPage />,
+          },
+          {
+            path: "about",
+            element: <AboutPage />,
+          },
         ],
-    }
-    ]
-    
+      },
+    ],
   },
 ]);
 

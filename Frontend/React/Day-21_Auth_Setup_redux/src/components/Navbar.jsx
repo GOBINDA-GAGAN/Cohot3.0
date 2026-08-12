@@ -1,95 +1,64 @@
-import { useContext, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Auth } from "../context/AuthContext";
+import { ShoppingCart, LogOut } from "lucide-react";
+import { useAuth } from "../hooks/useAuth";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-
-
-  const { isLogin, setIsLogin, login } = useContext(Auth);
-  const navigat= useNavigate()
-
+  const { logOut } = useAuth();
+  let { user } = useSelector((store) => store.auth);
+  console.log(user.name.split(" ")[0]);
 
   const handelLogout = () => {
-    setIsLogin(false);
-    localStorage.removeItem("loginUser");
-    localStorage.removeItem("isLogin");
-   
-    
-  }
-
-
+    logOut();
+  };
   return (
-    <nav className="bg-white shadow-md border-b-2">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <nav className="border-b border-border bg-white/80 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <h1 className="text-2xl font-bold">
-          Link<span className="text-blue-600">Hub</span>
-        </h1>
+        <h1 className="text-xl font-bold text-primary">SkyMart</h1>
 
         {/* Navigation */}
-        <div className="flex gap-8">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-600 font-semibold border-b-2 border-blue-600 pb-1"
-                : "text-gray-700 hover:text-blue-600 transition"
-            }
+        <div className="flex items-center gap-6">
+          <a
+            href="/"
+            className="text-foreground transition-colors hover:text-primary"
           >
             Home
-          </NavLink>
+          </a>
 
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-600 font-semibold border-b-2 border-blue-600 pb-1"
-                : "text-gray-700 hover:text-blue-600 transition"
-            }
+          <a
+            href="/shop"
+            className="text-foreground transition-colors hover:text-primary"
+          >
+            Shop
+          </a>
+
+          <a
+            href="/about"
+            className="text-foreground transition-colors hover:text-primary"
           >
             About
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-600 font-semibold border-b-2 border-blue-600 pb-1"
-                : "text-gray-700 hover:text-blue-600 transition"
-            }
-          >
-            Contact
-          </NavLink>
+          </a>
         </div>
 
+        {/* Right Side */}
+        <div className="flex items-center gap-4">
+          <span className="text-foreground">
+            Hi,<span className="font-bold">{user.name.split(" ")[0]}</span>
+          </span>
 
-        {
-          isLogin ? (
-            <div className="flex gap-6 justify-center items-center">
-              <div className=" h-10 w-10 text-2xl items-center flex justify-center rounded-full bg-amber-300 font-semibold">
-                <p>
-                  {login.name.trim()[0]}
-                </p></div>
-              <button
-                onClick={handelLogout}
-                className="py-2 px-4 border-red-400 border rounded-xl text-shadow-2xs font-semibold duration-300  hover:bg-red-300">Logout</button>
-            </div>)
-            : (<div className="flex gap-4">
-              <Link to="/auth/login" className="text-gray-700 hover:text-blue-600 transition">
-                Login
-              </Link>
-              <Link to="/auth/register" className="text-gray-700 hover:text-blue-600 transition">
-                Register
-              </Link>
-            </div>)
-        }
+          <button className="rounded-lg p-2 text-foreground transition hover:bg-primary/10 hover:text-primary">
+            <ShoppingCart size={20} />
+          </button>
 
-
-
-
-
-
-      </div >
-    </nav >
+          <button
+            onClick={handelLogout}
+            className="rounded-lg p-2 text-foreground transition hover:bg-red-500/10 hover:text-red-500"
+          >
+            <LogOut size={20} />
+          </button>
+        </div>
+      </div>
+    </nav>
   );
 };
 
