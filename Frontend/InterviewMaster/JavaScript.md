@@ -11,9 +11,47 @@
 
 # 1. JavaScript Fundamentals
 
-* [ ] What is JavaScript?
-* [ ] Why was JavaScript created?
-* [ ] What problems does JavaScript solve?
+## What is JavaScript?
+
+- **High-level** programming language
+- **Dynamically typed** language
+- **Multi-paradigm** language
+- Primarily used to build **interactive applications**
+- Runs in **web browsers**
+- Can run on the **server using Node.js**
+- Supports **asynchronous programming**
+
+### Interview Answer
+
+> JavaScript is not just a language for making websites interactive. Its **dynamic typing, multi-paradigm nature, browser + server runtime, and asynchronous programming model** make it suitable for building modern full-stack applications.
+
+## Why was JavaScript created?
+- Created in **1995** by **Brendan Eich**
+- To make web pages **dynamic and interactive**
+- HTML → **Structure**
+- CSS → **Styling**
+- JavaScript → **Behavior and Logic**
+- Designed to run directly in the **browser**
+- Allows the browser to respond to **user actions**
+- Enables **dynamic content updates**
+
+### Interview Answer
+
+> JavaScript was created to bring **client-side programmability** to web pages. It allows the browser to execute logic, respond to user interactions, and update content dynamically without requiring a server request for every interaction.
+## What problems does JavaScript solve?
+
+- Makes web pages **interactive**
+- Handles **user actions** like clicks, typing, and form submissions
+- Updates page content **without reloading**
+- Performs **client-side validation**
+- Creates **dynamic UI behavior**
+- Communicates with servers using **APIs**
+- Supports **asynchronous operations**
+- Can be used for **frontend and backend development**
+
+### Interview Answer
+
+> JavaScript solves the problem of building **dynamic and interactive applications** by allowing the browser to handle user interactions, update the UI, validate data, communicate with APIs, and perform asynchronous operations without constantly reloading the page.
 * [ ] What are the main features of JavaScript?
 * [ ] Is JavaScript interpreted or compiled?
 * [ ] What is a scripting language?
