@@ -1,42 +1,33 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  ArrowRight,
-  Cloud,
-  Eye,
-  EyeOff,
-  Lock,
-  Mail,
-  User,
-} from "lucide-react";
+import { ArrowRight, Cloud, Eye, EyeOff, Lock, Mail, User } from "lucide-react";;
+import { useAuth } from "../../../context/AuthContext";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const { register: registerUser } = useAuth();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    watch,
   } = useForm({
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      username: "",
+      name: "",
       email: "",
       password: "",
       terms: false,
     },
   });
 
-  const password = watch("password");
-
-  // API call here
   const onSubmit = async (data) => {
-    console.log("Register data:", data);
-
-    // Example:
-    // await axios.post("/api/auth/register", data);
+    try {
+      const response = await registerUser(data);
+      console.log("Registration successful:", response);
+    } catch (error) {
+      console.error("Registration error:", error.message);
+    }
   };
 
   const handleGoogleLogin = () => {
@@ -48,11 +39,9 @@ const Register = () => {
   return (
     <main className="min-h-screen bg-background px-4 py-6 sm:px-6 lg:px-8">
       <div className="mx-auto grid min-h-[calc(100vh-3rem)] max-w-6xl items-center gap-8 lg:grid-cols-2 lg:gap-16">
-
         {/* ================= LEFT CONTENT ================= */}
         <section className="hidden lg:block">
           <div className="max-w-md">
-
             {/* Logo */}
             <a href="/" className="mb-10 inline-flex items-center gap-2">
               <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
@@ -74,44 +63,33 @@ const Register = () => {
             </h1>
 
             <p className="mt-5 max-w-sm text-sm leading-6 text-secondary">
-              Create your CloudVault workspace and securely manage,
-              organize, and collaborate on your files from anywhere.
+              Create your CloudVault workspace and securely manage, organize,
+              and collaborate on your files from anywhere.
             </p>
 
             {/* Info Grid */}
             <div className="mt-8 grid grid-cols-2 gap-3">
-
               <InfoCard
                 icon={Lock}
                 title="Secure"
                 text="Privacy-first storage"
               />
 
-              <InfoCard
-                icon={Cloud}
-                title="Cloud"
-                text="Access anywhere"
-              />
+              <InfoCard icon={Cloud} title="Cloud" text="Access anywhere" />
 
-              <InfoCard
-                icon={User}
-                title="Teams"
-                text="Easy collaboration"
-              />
+              <InfoCard icon={User} title="Teams" text="Easy collaboration" />
 
               <InfoCard
                 icon={ArrowRight}
                 title="Simple"
                 text="Built for everyone"
               />
-
             </div>
           </div>
         </section>
 
         {/* ================= REGISTER ================= */}
         <section className="mx-auto w-full max-w-md">
-
           {/* Mobile Logo */}
           <div className="mb-6 flex justify-center lg:hidden">
             <a href="/" className="flex items-center gap-2">
@@ -127,7 +105,6 @@ const Register = () => {
 
           {/* Card */}
           <div className="rounded-xl border border-border bg-card p-5 shadow-card sm:p-7">
-
             {/* Header */}
             <div className="text-center">
               <h2 className="text-2xl font-semibold tracking-tight text-foreground">
@@ -153,112 +130,20 @@ const Register = () => {
             <div className="my-5 flex items-center gap-3">
               <div className="h-px flex-1 bg-border" />
 
-              <span className="text-[10px] font-medium text-muted">
-                OR
-              </span>
+              <span className="text-[10px] font-medium text-muted">OR</span>
 
               <div className="h-px flex-1 bg-border" />
             </div>
 
             {/* ================= FORM ================= */}
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="space-y-3.5"
-            >
-
-              {/* First + Last Name */}
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-
-                {/* First Name */}
-                <div>
-                  <label
-                    htmlFor="firstName"
-                    className="mb-1.5 block text-xs font-medium text-foreground"
-                  >
-                    First name
-                  </label>
-
-                  <div className="relative">
-                    <User
-                      size={15}
-                      className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted"
-                    />
-
-                    <input
-                      id="firstName"
-                      type="text"
-                      placeholder="John"
-                      className={`h-10 w-full rounded-md border bg-background pl-9 pr-3 text-sm text-foreground outline-none transition placeholder:text-primary/20 focus:ring-2 focus:ring-ring/10 ${
-                        errors.firstName
-                          ? "border-red-500"
-                          : "border-border focus:border-ring"
-                      }`}
-                      {...register("firstName", {
-                        required: "First name is required",
-                        minLength: {
-                          value: 2,
-                          message: "At least 2 characters",
-                        },
-                      })}
-                    />
-                  </div>
-
-                  {errors.firstName && (
-                    <p className="mt-1 text-[10px] text-red-500">
-                      {errors.firstName.message}
-                    </p>
-                  )}
-                </div>
-
-                {/* Last Name */}
-                <div>
-                  <label
-                    htmlFor="lastName"
-                    className="mb-1.5 block text-xs font-medium text-foreground"
-                  >
-                    Last name
-                  </label>
-
-                  <div className="relative">
-                    <User
-                      size={15}
-                      className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted"
-                    />
-
-                    <input
-                      id="lastName"
-                      type="text"
-                      placeholder="Doe"
-                      className={`h-10 w-full rounded-md border bg-background pl-9 pr-3 text-sm text-foreground outline-none transition placeholder:text-primary/20 focus:ring-2 focus:ring-ring/10 ${
-                        errors.lastName
-                          ? "border-red-500"
-                          : "border-border focus:border-ring"
-                      }`}
-                      {...register("lastName", {
-                        required: "Last name is required",
-                        minLength: {
-                          value: 2,
-                          message: "At least 2 characters",
-                        },
-                      })}
-                    />
-                  </div>
-
-                  {errors.lastName && (
-                    <p className="mt-1 text-[10px] text-red-500">
-                      {errors.lastName.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {/* Username */}
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
+              {/* Name */}
               <div>
                 <label
-                  htmlFor="username"
+                  htmlFor="name"
                   className="mb-1.5 block text-xs font-medium text-foreground"
                 >
-                  Username
+                  Name
                 </label>
 
                 <div className="relative">
@@ -268,32 +153,27 @@ const Register = () => {
                   />
 
                   <input
-                    id="username"
+                    id="name"
                     type="text"
-                    placeholder="johndoe"
+                    placeholder="John Doe"
                     className={`h-10 w-full rounded-md border bg-background pl-9 pr-3 text-sm text-foreground outline-none transition placeholder:text-primary/20 focus:ring-2 focus:ring-ring/10 ${
-                      errors.username
+                      errors.name
                         ? "border-red-500"
                         : "border-border focus:border-ring"
                     }`}
-                    {...register("username", {
-                      required: "Username is required",
+                    {...register("name", {
+                      required: "Name is required",
                       minLength: {
-                        value: 3,
-                        message: "Username must be at least 3 characters",
-                      },
-                      pattern: {
-                        value: /^[a-zA-Z0-9_]+$/,
-                        message:
-                          "Only letters, numbers and underscore allowed",
+                        value: 2,
+                        message: "At least 2 characters",
                       },
                     })}
                   />
                 </div>
 
-                {errors.username && (
+                {errors.name && (
                   <p className="mt-1 text-[10px] text-red-500">
-                    {errors.username.message}
+                    {errors.name.message}
                   </p>
                 )}
               </div>
@@ -375,8 +255,7 @@ const Register = () => {
                           "Must contain an uppercase letter",
 
                         number: (value) =>
-                          /[0-9]/.test(value) ||
-                          "Must contain a number",
+                          /[0-9]/.test(value) || "Must contain a number",
                       },
                     })}
                   />
@@ -386,16 +265,10 @@ const Register = () => {
                     onClick={() => setShowPassword((value) => !value)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted transition hover:text-foreground"
                     aria-label={
-                      showPassword
-                        ? "Hide password"
-                        : "Show password"
+                      showPassword ? "Hide password" : "Show password"
                     }
                   >
-                    {showPassword ? (
-                      <EyeOff size={15} />
-                    ) : (
-                      <Eye size={15} />
-                    )}
+                    {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
                   </button>
                 </div>
 
@@ -418,7 +291,7 @@ const Register = () => {
                   />
 
                   <span className="text-[11px] leading-5 text-secondary">
-                    I agree to the{" "}
+                    I agree to{" "}
                     <a
                       href="/terms"
                       className="font-medium text-foreground hover:underline"
@@ -494,13 +367,9 @@ const InfoCard = ({ icon: Icon, title, text }) => {
         <Icon size={15} />
       </div>
 
-      <h3 className="mt-3 text-xs font-semibold text-foreground">
-        {title}
-      </h3>
+      <h3 className="mt-3 text-xs font-semibold text-foreground">{title}</h3>
 
-      <p className="mt-1 text-[10px] text-muted">
-        {text}
-      </p>
+      <p className="mt-1 text-[10px] text-muted">{text}</p>
     </div>
   );
 };
@@ -508,12 +377,7 @@ const InfoCard = ({ icon: Icon, title, text }) => {
 /* ================= GOOGLE ICON ================= */
 
 const GoogleIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
+  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
     <path
       fill="#4285F4"
       d="M21.35 12.23c0-.79-.07-1.55-.22-2.27H12v4.3h5.22a4.46 4.46 0 0 1-1.94 2.93v2.43h3.14c1.84-1.69 2.93-4.18 2.93-7.39Z"
