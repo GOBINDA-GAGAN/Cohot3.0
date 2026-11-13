@@ -11,6 +11,7 @@ const config = {
   refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
   accessTokenExpiration: process.env.ACCESS_TOKEN_EXPIRATION || "15m",
   refreshTokenExpiration: process.env.REFRESH_TOKEN_EXPIRATION || "7d",
+  imagekit_private_key:process.env.IMAGEKIT_PRIVATE_KEY
 };
 
 export default config;

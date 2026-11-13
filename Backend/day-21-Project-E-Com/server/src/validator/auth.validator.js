@@ -1,10 +1,10 @@
-
 import { body, validationResult } from "express-validator";
 
-const registerValidator = [
+export const registerValidator = [
   body("name")
     .exists()
     .withMessage("Name is required")
+    .bail()
     .notEmpty()
     .withMessage("Name cannot be empty")
     .isLength({ min: 2 })
@@ -13,6 +13,7 @@ const registerValidator = [
   body("email")
     .exists()
     .withMessage("Email is required")
+    .bail()
     .notEmpty()
     .withMessage("Email cannot be empty")
     .isEmail()
@@ -21,14 +22,14 @@ const registerValidator = [
   body("password")
     .exists()
     .withMessage("Password is required")
+    .bail()
     .notEmpty()
     .withMessage("Password cannot be empty")
-    .isLength({ min: 6 })
+    .isLength({ min: 8 })
     .withMessage("Password must be at least 8 characters"),
 
   (req, res, next) => {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
       return res.status(400).json({
         success: false,
@@ -40,4 +41,36 @@ const registerValidator = [
   },
 ];
 
-export default registerValidator;
+export const loginValidator = [
+  body("email")
+    .exists()
+    .withMessage("Email is required")
+    .bail()
+    .notEmpty()
+    .withMessage("Email cannot be empty")
+    .isEmail()
+    .withMessage("Please enter a valid email"),
+
+  body("password")
+    .exists()
+    .withMessage("Password is required")
+    .bail()
+    .notEmpty()
+    .withMessage("Password cannot be empty")
+    .isLength({ min: 8 })
+    .withMessage("Password must be at least 8 characters"),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        errors: errors.array(),
+      });
+    }
+
+    next();
+  },
+];
+
+
